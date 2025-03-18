@@ -5,8 +5,19 @@ function agregarAmigo() {
     const input = document.getElementById("amigo");
     const nombre = input.value.trim();
 
+    // Validaciones
     if (nombre === "") {
-        alert("Por favor, ingresa un nombre válido.");
+        alert("⚠️ Por favor, ingresa un nombre válido.");
+        return;
+    }
+
+    if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$/.test(nombre)) {
+        alert("⚠️ Solo se permiten letras y espacios. No uses números ni caracteres especiales.");
+        return;
+    }
+
+    if (amigos.includes(nombre)) {
+        alert("⚠️ Este nombre ya ha sido agregado.");
         return;
     }
 
@@ -28,7 +39,7 @@ function actualizarLista() {
 
 function sortearAmigo() {
     if (amigos.length === 0) {
-        alert("La lista está vacía. Agrega nombres antes de sortear.");
+        alert("⚠️ La lista está vacía. Agrega nombres antes de sortear.");
         return;
     }
 
